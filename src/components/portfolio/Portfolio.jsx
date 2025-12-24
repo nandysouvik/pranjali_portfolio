@@ -5,38 +5,32 @@ import { motion, useInView, useScroll, useTransform } from "motion/react";
 const items = [
   {
     id: 1,
-    img: "/p1.jpg",
-    title: "Full Stack Blog Application",
-    desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure laboriosam tempore consectetur, atque maiores culpa quia, repellat id, dicta esse fugit neque voluptatem provident itaque voluptates minima. Repudiandae, provident hic.",
-    link: "/",
+    img: "/p1.png",
+    title: "India's Got Talent - Semi-Finalist",
+    desc: "Achieved semi-finalist position in India's Got Talent (Colors TV), showcasing exceptional dance talent and performance skills on a national platform.",
+    link: "https://youtu.be/ciEwiGbDvus",
   },
   {
     id: 2,
-    img: "/p2.jpg",
-    title: "School Management System",
-    desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure laboriosam tempore consectetur, atque maiores culpa quia, repellat id, dicta esse fugit neque voluptatem provident itaque voluptates minima. Repudiandae, provident hic.",
-    link: "/",
+    img: "",
+    title: "Ugram Ujwalam - Semi-Finalist",
+    desc: "Reached semi-finals in 'Ugram Ujwalam' (Manorama TV), demonstrating versatility in dance forms and captivating performances.",
   },
   {
     id: 3,
-    img: "/p3.jpg",
-    title: "Real-time Chat Application",
-    desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure laboriosam tempore consectetur, atque maiores culpa quia, repellat id, dicta esse fugit neque voluptatem provident itaque voluptates minima. Repudiandae, provident hic.",
-    link: "/",
+    title: "Mauritius National Day Performance",
+    desc: "Performed at prestigious Mauritius National Day event, telecasted on the national channel of Mauritius, representing Indian dance culture internationally.",
   },
   {
     id: 4,
-    img: "/p4.jpg",
-    title: "Social Media Project",
-    desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure laboriosam tempore consectetur, atque maiores culpa quia, repellat id, dicta esse fugit neque voluptatem provident itaque voluptates minima. Repudiandae, provident hic.",
-    link: "/",
+    title: "ETV @ 20 Showcase",
+    desc: "Participated in 'ETV @ 20' showcase event, telecasted on ETV Telugu, showcasing Bollywood and contemporary dance performances.",
+    link: "https://youtu.be/fakxHZTcS8k",
   },
   {
     id: 5,
-    img: "/p5.jpg",
-    title: "Animated Portfolio Website",
-    desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure laboriosam tempore consectetur, atque maiores culpa quia, repellat id, dicta esse fugit neque voluptatem provident itaque voluptates minima. Repudiandae, provident hic.",
-    link: "/",
+    title: "Dance Instruction & Teaching",
+    desc: "Teaching Aerial Pole act, contemporary Bollywood & Hip hop at Dancepiration Academy, and semi-classical & contemporary dance forms at Name Academy as freelance instructor.",
   },
 ];
 
@@ -80,25 +74,33 @@ const ListItem = ({ item }) => {
 
   const isInView = useInView(ref, { margin: "-100px" });
 
+  const hasImage = item.img && item.img.trim() !== "";
+  const hasLink = item.link && item.link.trim() !== "";
+
   return (
     <div className="pItem" ref={ref}>
-      <motion.div
-        variants={imgVariants}
-        animate={isInView ? "animate" : "initial"}
-        className="pImg"
-      >
-        <img src={item.img} alt="" />
-      </motion.div>
+      {hasImage && (
+        <motion.div
+          variants={imgVariants}
+          animate={isInView ? "animate" : "initial"}
+          className="pImg"
+        >
+          <img src={item.img} alt="" />
+        </motion.div>
+      )}
       <motion.div
         variants={textVariants}
         animate={isInView ? "animate" : "initial"}
         className="pText"
+        style={!hasImage ? { width: "80%", margin: "0 auto" } : {}}
       >
         <motion.h1 variants={textVariants}>{item.title}</motion.h1>
         <motion.p variants={textVariants}>{item.desc}</motion.p>
-        <motion.a variants={textVariants} href={item.link}>
-          <button>View Project</button>
-        </motion.a>
+        {hasLink && (
+          <motion.a variants={textVariants} href={item.link} target="_blank" rel="noopener noreferrer">
+            <button>{item.link !== "/" ? "Watch Performance" : "Learn More"}</button>
+          </motion.a>
+        )}
       </motion.div>
     </div>
   );

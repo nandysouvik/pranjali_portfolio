@@ -54,6 +54,35 @@ label {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+.formButton:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.formButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+form span {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+
+input:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown) {
+  border: 2px solid #f44336;
+}
+
+input:valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown) {
+  border: 2px solid #4caf50;
 }
 
 @media (max-width: 1280px) {

@@ -36,6 +36,70 @@ const followVariants = {
 };
 
 const Hero = () => {
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    
+    const scrollToElement = () => {
+      // Try multiple ways to find the contact section
+      const contactSection = document.getElementById("contact") || 
+                             document.querySelector("section#contact") ||
+                             document.querySelector('[id="contact"]') ||
+                             document.querySelector('.contact');
+      
+      if (contactSection) {
+        // Temporarily disable scroll-snap for smooth scrolling
+        const html = document.documentElement;
+        const originalScrollSnap = html.style.scrollSnapType;
+        html.style.scrollSnapType = 'none';
+        
+        const rect = contactSection.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const targetPosition = rect.top + scrollTop;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
+        });
+        
+        // Re-enable scroll-snap after a delay
+        setTimeout(() => {
+          html.style.scrollSnapType = originalScrollSnap;
+        }, 1000);
+        
+        return true;
+      }
+      return false;
+    };
+    
+    // Try immediately
+    if (!scrollToElement()) {
+      // Wait for lazy loading and retry multiple times
+      let attempts = 0;
+      const maxAttempts = 10;
+      const retryInterval = setInterval(() => {
+        attempts++;
+        if (scrollToElement() || attempts >= maxAttempts) {
+          clearInterval(retryInterval);
+          if (attempts >= maxAttempts) {
+            // Final fallback: scroll to bottom
+            const html = document.documentElement;
+            const originalScrollSnap = html.style.scrollSnapType;
+            html.style.scrollSnapType = 'none';
+            
+            window.scrollTo({
+              top: document.documentElement.scrollHeight,
+              behavior: "smooth"
+            });
+            
+            setTimeout(() => {
+              html.style.scrollSnapType = originalScrollSnap;
+            }, 1000);
+          }
+        }
+      }, 200);
+    }
+  };
+
   return (
     <div className="hero">
       <div className="hSection left">
@@ -48,7 +112,7 @@ const Hero = () => {
         >
           Hey There,
           <br />
-          <span>I'm Robert!</span>
+          <span>I'm Pranjali Kundu!</span>
         </motion.h1>
         {/* AWARDS */}
         <motion.div
@@ -57,9 +121,9 @@ const Hero = () => {
           animate="animate"
           className="awards"
         >
-          <motion.h2 variants={awardVariants}>Top Rated Designer</motion.h2>
+          <motion.h2 variants={awardVariants}>Dynamic Dancer & Choreographer</motion.h2>
           <motion.p variants={awardVariants}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            A 21-year-old passionate dancer from Kolkata, specializing in Salsa, Bollywood, and Aerial acts. Semi-finalist of India's Got Talent.
           </motion.p>
           <motion.div variants={awardVariants} className="awardList">
             <motion.img variants={awardVariants} src="/award1.png" alt="" />
@@ -113,15 +177,15 @@ const Hero = () => {
           animate="animate"
           className="follow"
         >
-          <motion.a variants={followVariants} href="/">
+          <motion.a variants={followVariants} href="https://www.instagram.com/the_pranjalii?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
             <img src="/instagram.png" alt="" />
           </motion.a>
-          <motion.a variants={followVariants} href="/">
+          <motion.a variants={followVariants} href="https://www.facebook.com/ms.pranjali/">
             <img src="/facebook.png" alt="" />
           </motion.a>
-          <motion.a variants={followVariants} href="/">
+          {/* <motion.a variants={followVariants} href="/">
             <img src="/youtube.png" alt="" />
-          </motion.a>
+          </motion.a> */}
           <motion.div variants={followVariants} className="followTextContainer">
             <div className="followText">FOLLOW ME</div>
           </motion.div>
@@ -134,17 +198,18 @@ const Hero = () => {
           transition={{ duration: 1 }}
           className="certificate"
         >
-          <img src="/certificate.png" alt="" />
-          LMA CERTIFICED
+          <img src="/certificate.svg" alt="Dancer Certificate" />
+          INDIA'S GOT TALENT
           <br />
-          PROFESSIONAL
+          SEMI-FINALIST
           <br />
-          UI DESIGNER
+          DANCER & CHOREOGRAPHER
         </motion.div>
         {/* CONTACT BUTTON */}
         <motion.a
-          href="/#contact"
+          href="#contact"
           className="contactLink"
+          onClick={scrollToContact}
           animate={{
             x: [200, 0],
             opacity: [0, 1],
@@ -170,7 +235,7 @@ const Hero = () => {
                 d="M 100,100 m -60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"
               />
               <text className="circleText">
-                <textPath href="#innerCirclePath">Hire Now •</textPath>
+                <textPath href="#innerCirclePath">Contact Me •</textPath>
               </text>
               <text className="circleText">
                 <textPath href="#innerCirclePath" startOffset="44%">
@@ -203,7 +268,7 @@ const Hero = () => {
           </Suspense>
         </Canvas>
         <div className="hImg">
-          <img src="/hero.png" alt="" />
+          <img src="/hero.JPG" alt="" />
         </div>
       </div>
     </div>

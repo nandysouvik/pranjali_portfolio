@@ -12,15 +12,16 @@ const Speech = () => {
         <TypeAnimation
           sequence={[
             1000,
-            "Same substring at the start will only be typed out once, initially",
+            "Passionate dancer specializing in Salsa, Bollywood & Aerial acts",
             1000,
-            "Lorem ipsum dolor sit amet lerinat consectetur adipisicing. ",
+            "Semi-finalist of India's Got Talent & Ugram Ujwalam",
+            1000,
+            "Teaching dance forms & performing globally",
             1000,
           ]}
           wrapper="span"
           speed={40}
           deletionSpeed={60}
-          // omitDeletionAnimation
           repeat={Infinity}
         />
       </div>
