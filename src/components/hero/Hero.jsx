@@ -126,9 +126,9 @@ const Hero = () => {
             A 21-year-old passionate dancer from Kolkata, specializing in Salsa, Bollywood, and Aerial acts. Semi-finalist of India's Got Talent.
           </motion.p>
           <motion.div variants={awardVariants} className="awardList">
-            <motion.img variants={awardVariants} src="/award1.png" alt="" />
-            <motion.img variants={awardVariants} src="/award2.png" alt="" />
-            <motion.img variants={awardVariants} src="/award3.png" alt="" />
+            <motion.img variants={awardVariants} src={`${import.meta.env.BASE_URL}award1.png`} alt="" />
+            <motion.img variants={awardVariants} src={`${import.meta.env.BASE_URL}award2.png`} alt="" />
+            <motion.img variants={awardVariants} src={`${import.meta.env.BASE_URL}award3.png`} alt="" />
           </motion.div>
         </motion.div>
         {/* SCROLL SVG */}
@@ -178,10 +178,10 @@ const Hero = () => {
           className="follow"
         >
           <motion.a variants={followVariants} href="https://www.instagram.com/the_pranjalii?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
-            <img src="/instagram.png" alt="" />
+            <img src={`${import.meta.env.BASE_URL}instagram.png`} alt="" />
           </motion.a>
           <motion.a variants={followVariants} href="https://www.facebook.com/ms.pranjali/">
-            <img src="/facebook.png" alt="" />
+            <img src={`${import.meta.env.BASE_URL}facebook.png`} alt="" />
           </motion.a>
           {/* <motion.a variants={followVariants} href="/">
             <img src="/youtube.png" alt="" />
@@ -198,7 +198,7 @@ const Hero = () => {
           transition={{ duration: 1 }}
           className="certificate"
         >
-          <img src="/certificate.svg" alt="Dancer Certificate" />
+          <img src={`${import.meta.env.BASE_URL}certificate.svg`} alt="Dancer Certificate" />
           INDIA'S GOT TALENT
           <br />
           SEMI-FINALIST
@@ -268,7 +268,7 @@ const Hero = () => {
           </Suspense>
         </Canvas>
         <div className="hImg">
-          <img src="/hero.JPG" alt="" />
+          <img src={`${import.meta.env.BASE_URL}hero.JPG`} alt="" />
         </div>
       </div>
     </div>

@@ -40,19 +40,19 @@ const listVariants = {
 const services = [
   {
     id: 1,
-    img: "/service1.png",
+    img: `${import.meta.env.BASE_URL}service1.png`,
     title: "Dance Performance",
     counter: 50,
   },
   {
     id: 2,
-    img: "/service2.png",
+    img: `${import.meta.env.BASE_URL}service2.png`,
     title: "Choreography",
     counter: 60,
   },
   {
     id: 3,
-    img: "/service3.png",
+    img: `${import.meta.env.BASE_URL}service3.png`,
     title: "Dance Instruction",
     counter: 30,
   },

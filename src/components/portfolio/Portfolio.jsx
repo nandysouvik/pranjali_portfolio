@@ -5,7 +5,7 @@ import { motion, useInView, useScroll, useTransform } from "motion/react";
 const items = [
   {
     id: 1,
-    img: "/p1.png",
+    img: `${import.meta.env.BASE_URL}p1.png`,
     title: "India's Got Talent - Semi-Finalist",
     desc: "Achieved semi-finalist position in India's Got Talent (Colors TV), showcasing exceptional dance talent and performance skills on a national platform.",
     link: "https://youtu.be/ciEwiGbDvus",

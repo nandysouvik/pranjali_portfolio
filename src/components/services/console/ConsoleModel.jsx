@@ -1,7 +1,7 @@
 import { useGLTF } from '@react-three/drei'
 
 export function ConsoleModel(props) {
-  const { nodes, materials } = useGLTF('/consoleModel.glb')
+  const { nodes, materials } = useGLTF(`${import.meta.env.BASE_URL}consoleModel.glb`)
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={1.112}>
@@ -13,4 +13,4 @@ export function ConsoleModel(props) {
   )
 }
 
-useGLTF.preload('/consoleModel.glb')
+useGLTF.preload(`${import.meta.env.BASE_URL}consoleModel.glb`)
